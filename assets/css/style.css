@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-color: #050505;
-  --surface-color: #111111;
-  --surface-hover: #1a1a1a;
-  --border-color: #222222;
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1aa;
+  --bg-color: #f9fafb;
+  --surface-color: #ffffff;
+  --surface-hover: #f3f4f6;
+  --border-color: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
   --accent-color: #3b82f6;
-  --accent-hover: #60a5fa;
+  --accent-hover: #2563eb;
   --transition: all 0.3s ease;
 }
 
@@ -42,7 +42,7 @@ a:hover {
 /* Header & Navigation */
 header {
   border-bottom: 1px solid var(--border-color);
-  background-color: rgba(5, 5, 5, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
@@ -103,7 +103,7 @@ main {
   letter-spacing: -0.04em;
   margin-bottom: 1.5rem;
   line-height: 1.1;
-  background: linear-gradient(to right, #fff, #a1a1aa);
+  background: linear-gradient(to right, #111827, #4b5563);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -168,7 +168,7 @@ main {
 .card:hover {
   transform: translateY(-4px);
   border-color: #333;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
 }
 
 .card-img-wrapper {
@@ -235,9 +235,9 @@ main {
 
 /* Downloads specifically */
 .download-btn {
-  background-color: #1a1a1a;
-  color: #fff;
-  border: 1px solid #333;
+  background-color: #f3f4f6;
+  color: #111827;
+  border: 1px solid #d1d5db;
   padding: 0.5rem 1rem;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -247,8 +247,8 @@ main {
 }
 
 .download-btn:hover {
-  background-color: #fff;
-  color: #000;
+  background-color: #111827;
+  color: #ffffff;
 }
 
 /* Page Headers */
@@ -284,4 +284,21 @@ footer {
 @media (max-width: 768px) {
   .hero h1 { font-size: 2.5rem; }
   .nav-links { display: none; } /* Simple hiding for mobile for now, or build hamburger */
+}
+
+/* Post Content Styling */
+.post-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+.post-content h2 {
+  font-size: 2rem;
+  margin: 3rem 0 1rem;
+  color: var(--text-primary);
+}
+.post-content p {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
 }
