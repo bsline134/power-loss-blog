@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 :root {
-  --bg-color: #f9fafb;
-  --surface-color: #ffffff;
-  --surface-hover: #f3f4f6;
-  --border-color: #e5e7eb;
-  --text-primary: #111827;
-  --text-secondary: #4b5563;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
+  --bg-color: #f7f4ef;
+  --surface-color: #fdf9f4;
+  --surface-hover: #f0ebe3;
+  --border-color: #e0d8cd;
+  --text-primary: #1a1208;
+  --text-secondary: #5c4f3a;
+  --accent-color: #c2692a;
+  --accent-hover: #a8571f;
   --transition: all 0.3s ease;
 }
 
@@ -80,6 +80,24 @@ nav {
   color: var(--text-primary);
 }
 
+/* Home-specific Transparent Header */
+.home-header {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  backdrop-filter: none;
+  border-bottom: none;
+}
+
+.home-header .nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.home-header .nav-links a:hover,
+.home-header .nav-links a.active {
+  color: #ffffff;
+}
+
 /* Main Content Layout */
 main {
   flex: 1;
@@ -89,29 +107,113 @@ main {
   width: 100%;
 }
 
-/* Hero Section */
+/* Hero Section — Full Bleed */
 .hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 6rem 0;
-  max-width: 800px;
-  margin: 0 auto;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../img/hero.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  animation: heroReveal 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+@keyframes heroReveal {
+  0%   { opacity: 0; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5, 3, 1, 0.30) 0%,
+    rgba(5, 3, 1, 0.52) 50%,
+    rgba(5, 3, 1, 0.82) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  padding: 2rem 2rem 5rem;
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
-  line-height: 1.1;
-  background: linear-gradient(to right, #111827, #4b5563);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.15;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hero p {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.83);
   margin-bottom: 2.5rem;
+  line-height: 1.7;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Button overrides inside hero (dark background) */
+.hero .btn-primary {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #ffffff;
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+}
+
+.hero .btn-primary:hover {
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.hero .btn-secondary {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  margin-left: 0;
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+}
+
+.hero .btn-secondary:hover {
+  border-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .btn {
@@ -125,14 +227,15 @@ main {
 }
 
 .btn-primary {
-  background-color: var(--text-primary);
-  color: var(--bg-color);
-  border: 1px solid var(--text-primary);
+  background-color: var(--accent-color);
+  color: #ffffff;
+  border: 1px solid var(--accent-color);
 }
 
 .btn-primary:hover {
-  background-color: transparent;
-  color: var(--text-primary);
+  background-color: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #ffffff;
 }
 
 .btn-secondary {
@@ -259,9 +362,10 @@ main {
 }
 
 .page-header h1 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2.5rem;
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
 
@@ -294,6 +398,7 @@ footer {
   line-height: 1.8;
 }
 .post-content h2 {
+  font-family: 'Playfair Display', Georgia, serif;
   font-size: 2rem;
   margin: 3rem 0 1rem;
   color: var(--text-primary);
